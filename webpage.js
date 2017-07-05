@@ -9,6 +9,12 @@ $(document).ready(function () {
     for (i = 0; i <= 360; i += 1) {
         hueBg.append("<span style='background:hsla(" + i + ", " + s + "%, " + l + "%, " + a + ");'></span>");
     }
+    var updateColorValue = function(r,g,b){
+        $('#r').val(r);
+        $('#g').val(g);
+        $('#b').val(b);
+    }
+    updateColorValue(255,140,0);
     $(".color-picker .hue .range input[type=range]").change(function () {
         h = $(this).val();
         var hue = "hsla(" + h + ", " + s + "%, " + l + "%, " + a + ")",
@@ -41,6 +47,7 @@ $(document).ready(function () {
             background: "-webkit-linear-gradient(left,  rgba(0,0,0,0) 0%, " + hue + " 100%)",
             background: "linear-gradient(to right,  rgba(0,0,0,0) 0%, " + hue + " 100%)"
         });
+        updateColorValue(hex_16_bytes[0],hex_16_bytes[1],hex_16_bytes[2]);
     });
     $(".color-picker .hue .range input[type=range]").mousemove(function () {
         h = $(this).val();
@@ -48,7 +55,6 @@ $(document).ready(function () {
             rgb = $("body").css("background-color"),
             hex_16_bytes = rgb.split("(")[1].split(")")[0].split(", "),
             hex = [];
-            console.log(hex_16_bytes);
         hex[0] = parseInt(hex_16_bytes[0]).toString(16);
         hex[1] = parseInt(hex_16_bytes[1]).toString(16);
         hex[2] = parseInt(hex_16_bytes[2]).toString(16);
@@ -64,12 +70,6 @@ $(document).ready(function () {
         $(".color-codes .hex").text("#" + hex.join(""))
         $(".color-codes .hsl").text(hue);
         $(".color-codes .rgb").text(rgb);
-        console.log(rgb);
-        function getRGB(){
-            var red = rgb,
-                green,
-                blue; 
-        }
         $("body").css({
             background : hue
         });
@@ -80,6 +80,7 @@ $(document).ready(function () {
             background: "-webkit-linear-gradient(left,  rgba(0,0,0,0) 0%, " + hue + " 100%)",
             background: "linear-gradient(to right,  rgba(0,0,0,0) 0%, " + hue + " 100%)"
         });
+        updateColorValue(hex_16_bytes[0],hex_16_bytes[1],hex_16_bytes[2]);
     });
     
     $(".color-picker .apperance .range input[type=range]").change(function () {
@@ -90,6 +91,7 @@ $(document).ready(function () {
         } else {
             a = "0." + $(this).val();
         }
+
         var hue = "hsla(" + h + ", " + s + "%, " + l + "%, " + a + ")",
             rgb = $("body").css("background-color"),
             hex_16_bytes = rgb.split("(")[1].split(")")[0].split(", "),
@@ -109,9 +111,11 @@ $(document).ready(function () {
         $(".color-codes .hex").text("#" + hex.join(""))
         $(".color-codes .hsl").text(hue);
         $(".color-codes .rgb").text(rgb);
+
         $("body").css({
             background : hue
         });
+        updateColorValue(hex_16_bytes[0],hex_16_bytes[1],hex_16_bytes[2]);
     });
     $(".color-picker .apperance .range input[type=range]").mousemove(function () {
         if ($(this).val() <= 9){
@@ -143,5 +147,6 @@ $(document).ready(function () {
         $("body").css({
             background : hue
         });
+        updateColorValue(hex_16_bytes[0],hex_16_bytes[1],hex_16_bytes[2]);
     });
 });
