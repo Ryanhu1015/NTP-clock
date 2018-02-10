@@ -11,3 +11,5 @@ As a slave, colorduino here is just for reading the data sent from esp8266 and s
 this readme file is just brief about this project, the detailed information like what kinds of library you need to download, and troubles i had during the process, almost all of these things will be share on my blog: https://makeryan.wordpress.com/
 
 hope everyone who wants to build your own NTP clock can make it, and also hope that the code i share will be helpful! have fun!
+
+
